@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block nav %}
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="row" style="margin-top: 10px;">
+			<div class="col"></div>
+        	<div class="col-6">
+        		<button type="button" class="btn btn-warning">{{user}}</button>
+	            {% for task in tasks %}
+	            	<div class="card btn-block" style="margin-top: 10px; border-radius: 0px; padding: 10px; background-color: #fafafa">
+	                    <div class="row">
+	                        <div class="col-9">
+	                        	<div class="" style="border-radius: 0;">
+	                        		<div class="row">
+	                        			<div class="col">
+	                        				<h4>{{task.title}}</h4>
+	                        				<p>{{ task.description|truncatechars:12}}<a href="/view/{{task.id}}/">read more</a></p>
+	                        			</div>
+	                        		</div>
+	                        	</div>
+	                        </div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="col"></div>
+			<div class="col-5">
+				<div style="padding-top: 10px;">
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTask" style="border-radius: 40px;">
+					  + Add a new Task
+					</button>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+	<div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addTask">Add Task</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="/add/" method="POST">
+						{% csrf_token %}
+						<div class="form-group">
+							<input class="form-control" type="text" name="title" placeholder="Title">
+							<input class="form-control" type="text" name="description" placeholder="Small description">
+							<input class="form-control" type="date" name="due_date" placeholder="Finish date">
+						</div>
+						<button type="submit" class="btn btn-md btn-info">Add</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+
+
+
+	

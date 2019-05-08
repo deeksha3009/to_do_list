@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block nav %}
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-6">
+				<div class="card" style="width: 30rem;">
+					<div class="card-body">
+						<h3>{{one_task.title}}</h3>
+						<h6>{{one_task.last_date}}</h6>
+						<p>{{one_task.description}}</p>
+						<div class="col-3">
+							<div class="btn-group float-right" role="group">
+								<a href="/complete/{{one_task.id}}" class="float-right" data-toggle="tooltip" title="{% if task.complete %} Mark as Incomplete {% else %} Mark as Complete {% endif %}">&#10004;</a>
+								<a href="/delete/{{one_task.id}}/" class="float-right" style="padding-left: 10px;" data-toggle="tooltip" title="Delete">&#10007;</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+	
+{% endblock %}
